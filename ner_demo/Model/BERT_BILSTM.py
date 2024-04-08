@@ -28,6 +28,7 @@ class BERTBILSTM(object):
                  rnn_units: int = 128,
                  drop_rate: float = 0.5,
                  ):
+
         self.n_class = n_class
         self.max_len = max_len
         self.config_path = os.path.join(path_bert_dir, 'bert_config.json')

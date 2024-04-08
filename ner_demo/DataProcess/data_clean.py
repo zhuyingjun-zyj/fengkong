@@ -1,12 +1,15 @@
 import json
-import pandas as pd
+from tqdm import tqdm
 from pandas import Series
 import calendar
-import re
-import nltk
-from nltk import word_tokenize
+import nltk, re
+from nltk.tokenize import WordPunctTokenizer
+import pandas as pd
 
-nltk.download('punkt')
+tk = WordPunctTokenizer()  # F:\mylearning\fengkong\stanford-postagger-full-2017-06-09\stanford-postagger-3.8.0.jar
+
+
+# nltk.download('punkt')
 
 
 def data2json(origin_file, out_file):
@@ -62,12 +65,14 @@ def get_content_clean(contents):
     # contents = json.loads(result["f_sms_data"])
     contentsss = ""
     for content_one in contents:
-        content = content_one["content"]
+        content = content_one.get("content")
         oppositePhone = content_one.get("oppositePhone")
         smsTime = content_one.get("smsTime")
         type = content_one.get("type")
         weekday = get_week(smsTime)
-        contentsss = contentsss + content + " , el tiempo " + smsTime + " , semana " + weekday + "\n"
+
+        contentsss = contentsss + str(content) + " , el tiempo " + str(smsTime) + " , semana " + str(weekday) + "\n"
+
         # print(contentsss)
     print("===================")
     # result["f_sms_data"] = contentsss
@@ -86,7 +91,7 @@ def clean_content(origin_file, out_file):
 
 def merge_sms_label(content_file, label_file, merge_file):
     '''
-
+        将清洗后的短信和标签合并
     '''
 
     df_content = pd.read_csv(content_file, sep="\t")
@@ -99,55 +104,54 @@ def merge_sms_label(content_file, label_file, merge_file):
 
 
 def fit_tokenizer(merge_file):
-    df_content = pd.read_csv(merge_file, sep="\t")
-    df_content.dropna(subset=["f_sms_data"], inplace=True)
-    df_train = df_content["f_sms_data"].tolist()
+    df_train = pd.read_csv(merge_file, sep="\t")
+    df_train.dropna(subset=["f_sms_data"], inplace=True)
+    df_train["f_sms_data"] = df_train["f_sms_data"].str.lower()
+    df_train = df_train["f_sms_data"].tolist()
 
     print(len(df_train))
 
-    df_train = [
-        re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', item.lower())
-        for item in df_train]
+    # df_train = [
+    #     re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', item.lower())
+    #     for item in df_train]
 
     words_tokens = []
-    for item in df_train:
+    for item in tqdm(df_train):
 
-        word_tokens = word_tokenize(item)
+        for line in item.split("\n")[:-1]:
+            line = line.split(" , el tiempo ")
 
-        for item_ in word_tokens:
-            result = re.search(r'(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d', item_)
-            print(f"result ： {result}")
-            if result:
-                result = result[0].split(":")
-                words_tokens.extend(list(set(result)))
+            # 去除网址
+            txt = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '',
+                         line[0])
+
+            # 去除短信内容的数据 保留日期和具体时间
+            txt = re.sub('[0-9]', ' ', txt)
+            if len(line) >= 2:
+                line = txt + " , el tiempo " + line[1]
             else:
-                if len(item_.split("-")) >= 2:
-                    result = item_.split("-")
-                    words_tokens.extend(result)
+                line = txt
+            geek_line = tk.tokenize(line)
+            words_tokens.extend(list(set(geek_line)))
 
-                if len(item_.split("/")) >= 2:
-                    result = item_.split("/")
-                    words_tokens.extend(result)
-                else:
-                    words_tokens.append(item_)
 
-    print(f"分词后结果：{words_tokens}")
     words_tokens = list(set(words_tokens))
+    # print(f"分词后结果：{words_tokens}")
 
     # word : index
     words_tokens = {j: i for i, j in enumerate(words_tokens)}
 
-    with open("./tokenizer_sms_test.json", "w", encoding="utf-8") as wf:
+    with open("./tokenizer_sms_test_clean.json", "w", encoding="utf-8") as wf:
         json.dump(words_tokens, wf, indent=2, ensure_ascii=False)
     print(f"分词：{words_tokens}")
-    print(f"字典词量：{len(words_tokens)}")
+    print(f" 字典词量 ：{len(words_tokens)}")
 
 
 if __name__ == '__main__':
     origin_file = r"../data/data/data_sms_old.csv"
     train_clean_file = r"../data/data/data_sms_old_clean.csv"
     train_label_file = r"../data/data/data_label_old.csv"
-    train_merge_file = r"../data/data/train_merge.csv"
+    train_merge_file = r"../data/data/test_clean.csv"
 
     test_origin_file = r"../data/data/data_sms_new.csv"
     test_clean_file = r"../data/data/data_sms_new_clean.csv"
@@ -155,6 +159,32 @@ if __name__ == '__main__':
     test_merge_file = r"../data/data/test_merge.csv"
 
     # data2json(origin_file, out_file)
-    clean_content(test_origin_file, test_clean_file)
-    # merge_sms_label(train_clean_file, train_label_file, merge_file)
+    # clean_content(test_origin_file, test_clean_file)
+    # merge_sms_label(test_clean_file, test_label_file, test_merge_file)
     # fit_tokenizer(merge_file)
+    # fit_tokenizer(train_merge_file)
+
+    with open("./tokenizer_sms_test_clean.json", "r", encoding="utf-8") as wf:
+        sms_test_clean = json.load(wf)
+        with open("./tokenizer_sms_train_clean_1.5W_.json", "r", encoding="utf-8") as wf2:
+            sms_train_clean_15w_ = json.load(wf2)
+            with open("./tokenizer_sms_train_clean_15000.json", "r", encoding="utf-8") as wf3:
+                sms_train_clean_15w = json.load(wf3)
+                all_info = {**sms_test_clean, **sms_train_clean_15w_}
+                all_info = {**all_info, **sms_train_clean_15w}
+
+                  # unknown
+                all_info = {k: (v + 3) for k, v in all_info.items()}
+                all_info["[PAD]"] = 0
+                all_info["[END]"] = 1
+                all_info["[UNK]"] = 2
+
+                with open("./tokenizer_sms_all.json", "w", encoding="utf-8") as wf:
+                    json.dump(all_info, wf, indent=2, ensure_ascii=False)
+                print(f"分词：{all_info}")
+                print(f" 字典词量 ：{len(all_info)}")
+
+
+
+
+

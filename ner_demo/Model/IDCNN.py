@@ -78,9 +78,9 @@ class IDCNN(object):
 
 
 if __name__ == '__main__':
-    from DataProcess.process_data import DataProcess
+    from ner_demo.DataProcess.process_data import DataProcess
     from sklearn.metrics import f1_score, recall_score
-    from Public.mat import matli
+    from ner_demo.Public.mat import matli
     from tensorflow.python.keras.utils.vis_utils import plot_model
 
     MAX_LEN = 128

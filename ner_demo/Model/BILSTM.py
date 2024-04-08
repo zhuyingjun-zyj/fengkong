@@ -9,7 +9,9 @@ from matplotlib import pyplot
 from Public.utils import *
 import keras_metrics as km
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 
 class BILSTM():
     def __init__(self,
@@ -29,19 +31,24 @@ class BILSTM():
         self.drop_rate = drop_rate
 
     def creat_model(self):
-        model = Sequential()
+        # model = Sequential()
+        # model.add(Embedding(output_dim=self.embedding_dim,
+        #                     input_dim=self.vocab_size + 1,
+        #                     input_length=self.max_len))
+        #
+        # model.add(Bidirectional(LSTM(units=self.rnn_units), merge_mode='concat'))
+        # model.add(Dropout(self.drop_rate))
+        # model.add(Dense(self.n_class, activation='softmax'))
+        # # model.add(Activation('softmax'))
+        # # self.model = Model(inputs=inputs, outputs=x)
 
-        model.add(Embedding(output_dim=self.embedding_dim,
-                            input_dim=self.vocab_size + 1,
-                            input_length=self.max_len))
-
-        model.add(Bidirectional(LSTM(units=self.rnn_units), merge_mode='concat'))
-        model.add(Dropout(self.drop_rate))
-        model.add(Dense(self.n_class, activation='softmax'))
-        # model.add(Activation('softmax'))
-        # self.model = Model(inputs=inputs, outputs=x)
-
-        self.model = model
+        inputs = Input(shape=(None,))
+        x = Embedding(input_dim=self.vocab_size, output_dim=self.embedding_dim)(inputs)
+        x = Bidirectional(LSTM(units=self.rnn_units, return_sequences=True))(x)
+        # x = AttentionSelf(300)(x)
+        x = Dropout(self.drop_rate)(x)
+        x = Dense(self.n_class, activation='softmax')(x)
+        self.model = Model(inputs=inputs, outputs=x)
         self.model.summary()
         self.compile()
         return self.model
@@ -84,7 +91,7 @@ if __name__ == '__main__':
 
     import pandas as pd, numpy as np
     import math
-    from tqdm import tqdm   # 0-68,
+    from tqdm import tqdm  # 0-68,
 
     model = tf.keras.models.load_model(r"/Users/zhuyingjun/Desktop/fengkong/ner_demo/save_model/BILSTM/1.6w_200/50.h5")
     # results = model.evaluate(train_data, train_label)
@@ -103,7 +110,7 @@ if __name__ == '__main__':
     test_label = np.array(train_label)
 
     f = pd.DataFrame(pre, columns=["0", "1"])
-    f.to_csv("./train_data_reuslt.csv",index=False)
+    f.to_csv("./train_data_reuslt.csv", index=False)
     exit()
     df = f.sort_values(by=["1"])
     matli(df, "BiLstm Test sample num ")

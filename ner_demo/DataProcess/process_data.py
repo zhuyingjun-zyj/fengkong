@@ -2,17 +2,16 @@ from DataProcess.vocab import *
 from Public.path import path_data_dir, path_data2_dir, path_msra_dir, path_renmin_dir
 import numpy as np, pandas as pd
 import os, re
-from keras_bert import Tokenizer
+
 import codecs
 from nltk import word_tokenize
+from bert4keras.tokenizers import Tokenizer
+from Public.path import path_vocab
+from nltk.tokenize import WordPunctTokenizer
 
 
 class DataProcess(object):
-    def __init__(self,
-                 max_len=512,
-                 data_type='data',  # 'data data2 msra renmin'
-                 model='other',  # 'other'、'bert' bert 数据处理需要单独进行处理
-                 ):
+    def __init__(self, max_len=12800, model=None):
         """
         数据处理
         :param max_len: 句子最长的长度，默认为保留100
@@ -26,25 +25,19 @@ class DataProcess(object):
         self.max_len = max_len
         self.model = model
         self.tag_size = 2
-        self.dict_path = r'/Users/zhuyingjun/Desktop/fengkong/ner_demo/data/data/uncased_L-12_H-768_A-12/vocab.txt'
-        token_dict = {}
-        with codecs.open(self.dict_path, 'r', 'utf8') as reader:
-            for line in reader:
-                token = line.strip()
-                token_dict[token] = len(token_dict)
+        self.vocab_path = path_vocab
 
-        self.tokenizer = Tokenizer(token_dict)
+        # token_dict = {}
+        # with codecs.open(self.dict_path, 'r', 'utf8') as reader:
+        #     for line in reader:
+        #         token = line.strip()
+        #         token_dict[token] = len(token_dict)
+        #
+        # self.tokenizer = Tokenizer(token_dict)
 
-        self.unk_index = self.w2i.get(unk_flag, 101)
-        self.pad_index = self.w2i.get(pad_flag, 1)
-        self.cls_index = self.w2i.get(cls_flag, 102)
-        self.sep_index = self.w2i.get(sep_flag, 103)
+        self.tokenizer = Tokenizer(self.vocab_path, do_lower_case=True)
 
-        if data_type == 'data':
-            self.base_dir = r'/Users/zhuyingjun/Desktop/fengkong/ner_demo/data/data/1/200'
-            # renminribao_preprocessing()
-        else:
-            raise RuntimeError('type must be "data", "msra", "renmin" or "data2"')
+        self.base_dir = r'F:\mylearning\fengkong/ner_demo/data/data'
 
     def get_data(self, one_hot: bool = True) -> ([], [], [], []):
         """
@@ -55,8 +48,8 @@ class DataProcess(object):
 
         # 拼接地址
 
-        path_train = os.path.join(self.base_dir, "1_t_train_200_token.csv")
-        path_test = os.path.join(self.base_dir, "1_we_200_token.csv")
+        path_train = os.path.join(self.base_dir, "train_merge_30.csv")
+        path_test = os.path.join(self.base_dir, "train_merge_30.csv")
 
         # 、读取数据
         if self.model == 'bert':
@@ -64,9 +57,13 @@ class DataProcess(object):
             print('开始处理bert dev数据')
             test_data, test_label = self.__bert_text_to_index(path_test, data_type='dev')
         else:
-            train_data, train_label = self.__text_to_indexs(path_train)
+            # train_data, train_label = self.__tokenizer_text_to_indexs(path_train, data_type="dev")
+            # print("开始处理dev数据 ")
+            # test_data, test_label = self.__tokenizer_text_to_indexs(path_test, data_type="dev")
+
+            train_data, train_label = self.__word_punct_tokenizer_text_to_indexs(path_train)
             print("开始处理dev数据 ")
-            test_data, test_label = self.__text_to_indexs(path_test, data_type="dev")
+            test_data, test_label = self.__word_punct_tokenizer_text_to_indexs(path_test, data_type="dev")
 
         # 进行 one-hot处理
         if one_hot:
@@ -148,6 +145,87 @@ class DataProcess(object):
         # np.array(xs[idx:])
         return np.array(datas), np.array(labels)
 
+    def __tokenizer_text_to_indexs(self, file_path: str, data_type="train") -> ([], []):
+        df_content = pd.read_csv(file_path, sep="\t")
+        df_content.dropna(subset=["f_sms_data"], inplace=True)
+        print(f"{data_type} 数据长度：{len(df_content)}")
+        datas = []
+        labels = []
+        for index, item in df_content.iterrows():
+            sms_data = item["f_sms_data"]
+            label_one = item["d7"]
+
+            ## 去除邮箱
+            # sms_data = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '',
+            #                   sms_data.lower())
+
+            line_token_ids = self.tokenizer.tokens_to_ids(sms_data)[1:-1]
+            print(len(line_token_ids))
+
+            # print(f"标签 ：{sms_data} \n {self.tokenizer.tokenize(sms_data)}")
+            # print(f" ========== \n")
+
+            if len(line_token_ids) >= self.max_len:  # 先进行截断
+                line_token_ids = line_token_ids[:self.max_len]
+
+            # padding
+            else:  # 填充到最大长度
+                pad_num = self.max_len - len(line_token_ids)
+                line_token_ids = line_token_ids + [self.w2i.get("[PAD]")] * pad_num
+
+            datas.append(line_token_ids)
+
+            labels.append(label_one)
+
+        # np.array(xs[idx:])
+        return np.array(datas), np.array(labels)
+
+    def __word_punct_tokenizer_text_to_indexs(self, file_path: str, data_type="train") -> ([], []):
+        df_content = pd.read_csv(file_path, sep="\t")
+        df_content.dropna(subset=["f_sms_data"], inplace=True)
+        print(f"{data_type} 数据长度：{len(df_content)}")
+        datas = []
+        labels = []
+        tk = WordPunctTokenizer()
+
+        for index, item in df_content.iterrows():
+            sms_data = item["f_sms_data"]
+            label_one = item["d7"]
+            line_token_ids = []
+            for line in sms_data.split("\n")[:-1]:
+                line = line.split(" , el tiempo ")
+
+                # 去除网址
+                txt = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '',
+                             line[0])
+
+                # 去除短信内容的数据 保留日期和具体时间等数字
+                txt = re.sub('[0-9]', ' ', txt)
+
+                if len(line) >= 2:
+                    line = txt + " , el tiempo " + line[1]
+                else:
+                    line = txt
+
+                tk_lines = tk.tokenize(line)
+
+                for tk_line in tk_lines:
+                    line_token_ids.append(self.w2i.get(tk_line, self.w2i.get("[UNK]")))
+            print(f"该用户的token 数 ：{len(line_token_ids)}")
+            if len(line_token_ids) >= self.max_len:  # 先进行截断
+                line_token_ids = line_token_ids[:self.max_len]
+
+            # padding
+            else:  # 填充到最大长度
+                pad_num = self.max_len - len(line_token_ids)
+                line_token_ids = line_token_ids + [self.w2i.get("[PAD]")] * pad_num
+
+            datas.append(line_token_ids)
+            labels.append(label_one)
+
+        # np.array(xs[idx:])
+        return np.array(datas), np.array(labels)
+
     def __bert_text_to_index(self, file_path: str, data_type="train"):
         """
         :param file_path:  文件路径
@@ -182,11 +260,13 @@ class DataProcess(object):
 
 
 if __name__ == '__main__':
-    dp = DataProcess(data_type='data', model="bert", max_len=512)
-    x_train, y_train, x_test, y_test = dp.get_data(one_hot=True)
-    print(x_train[1].shape)
-    print(x_train[0].shape)
+    import pandas as pd
 
-    print(y_train.shape)
-    print(x_test[0].shape)
-    print(y_test.shape)
+    dp = DataProcess( max_len=12800)
+    x_train, y_train, x_test, y_test = dp.get_data(one_hot=False)
+    # print(x_train[1].shape)
+    # print(x_train[0].shape)
+    #
+    # print(y_train.shape)
+    # print(x_test[0].shape)
+    # print(y_test.shape)
