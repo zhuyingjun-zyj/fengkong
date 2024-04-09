@@ -1,9 +1,9 @@
 # 获取词典
 
-from Public.path import path_vocab
 import pandas as pd
 import re
 # from nltk import word_tokenize
+from Public.path import tokenizer_sms_all_path, tokenzier_path_vocab
 
 import json
 
@@ -14,7 +14,7 @@ sep_flag = '[SEP]'
 
 
 # 获取 word to index 词典
-def get_w2i(vocab_path=path_vocab):
+def get_w2i():
     w2i = {}
     # with open(vocab_path, 'r', encoding="utf-8") as f:
     #      w2i = json.load(f)
@@ -25,15 +25,15 @@ def get_w2i(vocab_path=path_vocab):
     # # w2i["[UNK]"] = 2  # unknown
     # # w2i["[SEP]"] = 3
 
-    # with open(vocab_path, 'r', encoding="utf-8") as f:
-    #     w2i = f.readlines()
-    #
-    # w2i = {v.replace("\n", ""): index for index, v in enumerate(w2i)}
-    with open("./tokenizer_sms_all.json", "r", encoding="utf-8") as wf:
-        tokenizer_sms_all = json.load(wf)
+    with open(tokenzier_path_vocab, 'r', encoding="utf-8") as f:
+        w2i = f.readlines()
+        w2i = {v.replace("\n", ""): index for index, v in enumerate(w2i)}
     return w2i
 
+    with open(tokenizer_sms_all_path, "r", encoding="utf-8") as wf:
+        tokenizer_sms_all = json.load(wf)
 
+    return tokenizer_sms_all
 
 
 path = "/Volumes/junge/project/fengkong"
@@ -119,27 +119,16 @@ def get_vocab_idcnn():
 if __name__ == '__main__':
     import tensorflow as tf
 
-    # dicr= {'1333':23,"2333":34}
-    # print(type(list(dicr.keys())))
-    # print(list(dicr.keys()))
-    # json_str = json.dumps(dicr)
-    # with open(r"/Users/zhuyingjun/Desktop/fengkong/fengkong_model/ner_demo/data/vocab/en_char2id.json","r") as wf :
-    #     w=  json.load(wf)
-    #     print(w.get("12","hhh"))
-    #     print(type(w),w)
-    # lists = [1,2,3,4,51,1]
-    # print(type(set(lists)))
-    # for  inem in set(lists):
-    #     print(inem)
-    # get_vocab_idcnn()
-    # 得到分类的独热向量
-    # targets = tf.one_hot(1, 2)
-    # print(str(targets))
-    # from keras.datasets import imdb
-    #
-    # # 这里使用10000个常用单词，减少计算
-    # (train_data, train_labels), (test_data, test_labels) = imdb.load_data(num_words=10000)
-    # print(train_labels)
-    # print(train_data[0])
-    # print(type(train_data))
-    get_w2i()
+    # get_w2i()
+    with open(tokenzier_path_vocab, 'r', encoding="utf-8") as rf:
+        with open("./clean", 'w', encoding="utf-8") as wf:
+            datas = rf.readlines()
+            clean_datas = []
+            for item in datas:
+                item = item.replace("##", '').lower()
+                if item not in clean_datas:
+                    clean_datas.append(item)
+                    wf.write(item)
+
+            print(f"一共写入：{len(clean_datas)} 之前共有：{len(datas)}")
+

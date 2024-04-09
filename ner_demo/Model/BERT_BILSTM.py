@@ -2,7 +2,7 @@
 采用 BERT + BILSTM + CRF 网络进行处理
 """
 
-from Public.path import path_bert_dir
+
 import keras_bert
 # from Public.path import path_bert_dir
 from tensorflow.keras.optimizers import Adam

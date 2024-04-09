@@ -11,13 +11,14 @@ from matplotlib import pyplot
 from Public.utils import *
 import keras_metrics as km
 import os
+from Public.path import max_len
 
 
 class IDCNNCRF2():
     def __init__(self,
                  vocab_size: int,  # 词的数量(词表的大小)
                  n_class: int,  # 分类的类别(本demo中包括小类别定义了7个类别)
-                 max_len: int = 100,  # 最长的句子最长长度
+
                  embedding_dim: int = 128,  # 词向量编码长度
                  drop_rate: float = 0.5,  # dropout比例
                  ):
@@ -40,24 +41,22 @@ class IDCNNCRF2():
         cnn  特征层数: 256、256、512
 
         """
-
-        word_vectors = np.array(...)  # word2vec向量的NumPy数组
-
-        # 转换NumPy数组为TF张量
-        word_vectors_tensor = tf.convert_to_tensor(word_vectors, dtype=tf.float32)
+        # word_vectors = np.array(...)  # word2vec向量的NumPy数组
+        #
+        # # 转换NumPy数组为TF张量
+        # word_vectors_tensor = tf.convert_to_tensor(word_vectors, dtype=tf.float32)
 
         # 定义输入层，使用word_index作为索引来获取word2vec向量
+
         inputs = Input(shape=(self.max_len,), name='input_word_index')
 
-        print(f"模型输入的数据类型 ：{type(inputs)}")
-
-        # x = Embedding(input_dim=self.vocab_size, output_dim=self.embedding_dim)(inputs)
-        encoded_input = Embedding(
-            input_dim=word_vectors_tensor.shape[0],  # 词汇表大小
-            output_dim=word_vectors_tensor.shape[1],  # word2vec向量的维度
-            weights=[word_vectors_tensor],  # 预训练的向量
-            trainable=False  # 不需要训练这些向量
-        )(inputs)
+        encoded_input = Embedding(input_dim=self.vocab_size, output_dim=self.embedding_dim)(inputs)
+        # encoded_input = Embedding(
+        #     input_dim=word_vectors_tensor.shape[0],  # 词汇表大小
+        #     output_dim=word_vectors_tensor.shape[1],  # word2vec向量的维度
+        #     weights=[word_vectors_tensor],  # 预训练的向量
+        #     trainable=False  # 不需要训练这些向量
+        # )(inputs)
 
         x = Conv1D(filters=256,
                    kernel_size=2,
@@ -82,6 +81,7 @@ class IDCNNCRF2():
 
         self.model.summary()
         self.compile()
+
         return self.model
 
     def compile(self):

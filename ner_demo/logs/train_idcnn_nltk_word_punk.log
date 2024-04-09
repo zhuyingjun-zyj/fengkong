@@ -1,0 +1,162 @@
+[2024-04-08 21:04:42] [INFO] begin epoch: 0
+[2024-04-08 21:04:54] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6867979764938354, 'acc': 0.7407407, 'val_loss': 0.6841983795166016, 'val_acc': 0.6666667, 'auc': 0.67009604, 'val_auc': 0.66392314} 
+[2024-04-08 21:04:56] [INFO] begin epoch: 1
+[2024-04-08 21:27:51] [INFO] begin epoch: 0
+[2024-04-08 21:28:04] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6876494884490967, 'acc': 0.5925926, 'val_loss': 0.6923825144767761, 'val_acc': 0.6666667, 'auc': 0.64060354, 'val_auc': 0.5} 
+[2024-04-08 21:28:04] [INFO] begin epoch: 1
+[2024-04-08 21:28:17] [INFO] IDCNN2 , epoch: 1 , dict:{'model_name': 'IDCNN2', 'epoch': 2, 'loss': 0.6895188093185425, 'acc': 0.5185185, 'val_loss': 0.6916831135749817, 'val_acc': 0.5925926, 'auc': 0.57956105, 'val_auc': 0.6680384} 
+[2024-04-08 21:28:17] [INFO] begin epoch: 2
+[2024-04-08 21:28:30] [INFO] IDCNN2 , epoch: 2 , dict:{'model_name': 'IDCNN2', 'epoch': 3, 'loss': 0.6896160244941711, 'acc': 0.5555556, 'val_loss': 0.6909955143928528, 'val_acc': 0.6666667, 'auc': 0.60562414, 'val_auc': 0.72565156} 
+[2024-04-08 21:28:30] [INFO] begin epoch: 3
+[2024-04-08 21:28:43] [INFO] IDCNN2 , epoch: 3 , dict:{'model_name': 'IDCNN2', 'epoch': 4, 'loss': 0.7006441950798035, 'acc': 0.2962963, 'val_loss': 0.6903119087219238, 'val_acc': 0.6666667, 'auc': 0.32716048, 'val_auc': 0.77914953} 
+[2024-04-08 21:28:43] [INFO] begin epoch: 4
+[2024-04-08 21:28:56] [INFO] IDCNN2 , epoch: 4 , dict:{'model_name': 'IDCNN2', 'epoch': 5, 'loss': 0.6863321661949158, 'acc': 0.5925926, 'val_loss': 0.6896312832832336, 'val_acc': 0.6666667, 'auc': 0.6598079, 'val_auc': 0.70370376} 
+[2024-04-08 21:28:56] [INFO] begin epoch: 5
+[2024-04-08 21:29:10] [INFO] IDCNN2 , epoch: 5 , dict:{'model_name': 'IDCNN2', 'epoch': 6, 'loss': 0.6887204647064209, 'acc': 0.5925926, 'val_loss': 0.6889561414718628, 'val_acc': 0.6666667, 'auc': 0.633059, 'val_auc': 0.69204384} 
+[2024-04-08 21:29:10] [INFO] begin epoch: 6
+[2024-04-08 21:29:23] [INFO] IDCNN2 , epoch: 6 , dict:{'model_name': 'IDCNN2', 'epoch': 7, 'loss': 0.6850231885910034, 'acc': 0.6666667, 'val_loss': 0.6882866024971008, 'val_acc': 0.6666667, 'auc': 0.70027435, 'val_auc': 0.6790123} 
+[2024-04-08 21:29:23] [INFO] begin epoch: 7
+[2024-04-08 21:33:41] [INFO] begin epoch: 0
+[2024-04-08 21:33:54] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6913220286369324, 'acc': 0.5555556, 'val_loss': 0.6885291337966919, 'val_acc': 0.6666667, 'auc': 0.5857339, 'val_auc': 0.67901236} 
+[2024-04-08 21:33:55] [INFO] begin epoch: 1
+[2024-04-08 21:34:07] [INFO] IDCNN2 , epoch: 1 , dict:{'model_name': 'IDCNN2', 'epoch': 2, 'loss': 0.684823751449585, 'acc': 0.7037037, 'val_loss': 0.6877751350402832, 'val_acc': 0.6666667, 'auc': 0.6899863, 'val_auc': 0.6666666} 
+[2024-04-08 21:34:08] [INFO] begin epoch: 2
+[2024-04-08 21:34:20] [INFO] IDCNN2 , epoch: 2 , dict:{'model_name': 'IDCNN2', 'epoch': 3, 'loss': 0.6838240623474121, 'acc': 0.6296296, 'val_loss': 0.687035322189331, 'val_acc': 0.6666667, 'auc': 0.6659808, 'val_auc': 0.65432096} 
+[2024-04-08 21:34:21] [INFO] begin epoch: 3
+[2024-04-08 21:34:33] [INFO] IDCNN2 , epoch: 3 , dict:{'model_name': 'IDCNN2', 'epoch': 4, 'loss': 0.6914978623390198, 'acc': 0.5555556, 'val_loss': 0.6863038539886475, 'val_acc': 0.6666667, 'auc': 0.5781893, 'val_auc': 0.65432096} 
+[2024-04-08 21:34:34] [INFO] begin epoch: 4
+[2024-04-08 21:34:47] [INFO] IDCNN2 , epoch: 4 , dict:{'model_name': 'IDCNN2', 'epoch': 5, 'loss': 0.6821087598800659, 'acc': 0.6296296, 'val_loss': 0.6855772733688354, 'val_acc': 0.6666667, 'auc': 0.718107, 'val_auc': 0.6790123} 
+[2024-04-08 21:34:47] [INFO] begin epoch: 5
+[2024-04-08 21:35:00] [INFO] IDCNN2 , epoch: 5 , dict:{'model_name': 'IDCNN2', 'epoch': 6, 'loss': 0.6844486594200134, 'acc': 0.5925926, 'val_loss': 0.6848618984222412, 'val_acc': 0.6666667, 'auc': 0.67009604, 'val_auc': 0.7407408} 
+[2024-04-08 21:35:00] [INFO] begin epoch: 6
+[2024-04-08 21:42:36] [INFO] begin epoch: 0
+[2024-04-08 21:42:47] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6994359493255615, 'acc': 0.37037036, 'val_loss': 0.6903955936431885, 'val_acc': 0.6666667, 'auc': 0.34567904, 'val_auc': 0.6536351} 
+[2024-04-08 21:50:07] [INFO] begin epoch: 0
+[2024-04-08 21:50:17] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.703689455986023, 'acc': 0.22222222, 'val_loss': 0.6972792148590088, 'val_acc': 0.33333334, 'auc': 0.28600824, 'val_auc': 0.32098764} 
+[2024-04-09 09:18:25] [INFO] begin epoch: 0
+[2024-04-09 09:18:38] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6962289214134216, 'acc': 0.5925926, 'val_loss': 0.6891348361968994, 'val_acc': 0.6666667, 'auc': 0.515775, 'val_auc': 0.67901236} 
+[2024-04-09 09:25:30] [INFO] begin epoch: 0
+[2024-04-09 09:25:40] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.7005400657653809, 'acc': 0.4074074, 'val_loss': 0.6944915056228638, 'val_acc': 0.33333334, 'auc': 0.37791494, 'val_auc': 0.40329218} 
+[2024-04-09 09:27:36] [INFO] begin epoch: 0
+[2024-04-09 09:27:48] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6896281242370605, 'acc': 0.6296296, 'val_loss': 0.6842505931854248, 'val_acc': 0.6666667, 'auc': 0.5857339, 'val_auc': 0.6666667} 
+[2024-04-09 09:27:48] [INFO] begin epoch: 1
+[2024-04-09 09:28:01] [INFO] IDCNN2 , epoch: 1 , dict:{'model_name': 'IDCNN2', 'epoch': 2, 'loss': 0.6881545186042786, 'acc': 0.5555556, 'val_loss': 0.683543860912323, 'val_acc': 0.6666667, 'auc': 0.5925926, 'val_auc': 0.6419753} 
+[2024-04-09 09:28:01] [INFO] begin epoch: 2
+[2024-04-09 09:31:42] [INFO] begin epoch: 0
+[2024-04-09 09:31:53] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6998582482337952, 'acc': 0.2962963, 'val_loss': 0.6955147981643677, 'val_acc': 0.33333334, 'auc': 0.29561043, 'val_auc': 0.3463649} 
+[2024-04-09 09:31:53] [INFO] begin epoch: 1
+[2024-04-09 09:32:05] [INFO] IDCNN2 , epoch: 1 , dict:{'model_name': 'IDCNN2', 'epoch': 2, 'loss': 0.6909685730934143, 'acc': 0.5555556, 'val_loss': 0.6947409510612488, 'val_acc': 0.33333334, 'auc': 0.5603567, 'val_auc': 0.36831278} 
+[2024-04-09 09:32:06] [INFO] begin epoch: 2
+[2024-04-09 09:32:17] [INFO] IDCNN2 , epoch: 2 , dict:{'model_name': 'IDCNN2', 'epoch': 3, 'loss': 0.694776177406311, 'acc': 0.4814815, 'val_loss': 0.6939735412597656, 'val_acc': 0.37037036, 'auc': 0.48765433, 'val_auc': 0.5} 
+[2024-04-09 09:32:18] [INFO] begin epoch: 3
+[2024-04-09 09:32:30] [INFO] IDCNN2 , epoch: 3 , dict:{'model_name': 'IDCNN2', 'epoch': 4, 'loss': 0.6929382681846619, 'acc': 0.5555556, 'val_loss': 0.6932220458984375, 'val_acc': 0.4074074, 'auc': 0.54595333, 'val_auc': 0.53497946} 
+[2024-04-09 09:32:31] [INFO] begin epoch: 4
+[2024-04-09 09:32:43] [INFO] IDCNN2 , epoch: 4 , dict:{'model_name': 'IDCNN2', 'epoch': 5, 'loss': 0.6882439851760864, 'acc': 0.4814815, 'val_loss': 0.6924776434898376, 'val_acc': 0.5925926, 'auc': 0.60150886, 'val_auc': 0.5} 
+[2024-04-09 09:32:43] [INFO] begin epoch: 5
+[2024-04-09 09:32:56] [INFO] IDCNN2 , epoch: 5 , dict:{'model_name': 'IDCNN2', 'epoch': 6, 'loss': 0.6904499530792236, 'acc': 0.5555556, 'val_loss': 0.6917340159416199, 'val_acc': 0.8888889, 'auc': 0.5096022, 'val_auc': 0.53635114} 
+[2024-04-09 09:32:57] [INFO] begin epoch: 6
+[2024-04-09 09:37:27] [INFO] begin epoch: 0
+[2024-04-09 09:37:39] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6878950595855713, 'acc': 0.5185185, 'val_loss': 0.6911087036132812, 'val_acc': 0.6666667, 'auc': 0.64266115, 'val_auc': 0.62345684} 
+[2024-04-09 09:37:39] [INFO] begin epoch: 1
+[2024-04-09 09:37:50] [INFO] IDCNN2 , epoch: 1 , dict:{'model_name': 'IDCNN2', 'epoch': 2, 'loss': 0.698015570640564, 'acc': 0.4074074, 'val_loss': 0.6903061866760254, 'val_acc': 0.6666667, 'auc': 0.41426614, 'val_auc': 0.6666666} 
+[2024-04-09 09:37:50] [INFO] begin epoch: 2
+[2024-04-09 09:38:01] [INFO] IDCNN2 , epoch: 2 , dict:{'model_name': 'IDCNN2', 'epoch': 3, 'loss': 0.6929076910018921, 'acc': 0.5185185, 'val_loss': 0.6895179152488708, 'val_acc': 0.6666667, 'auc': 0.52469134, 'val_auc': 0.6666666} 
+[2024-04-09 09:38:02] [INFO] begin epoch: 3
+[2024-04-09 11:27:48] [INFO] begin epoch: 0
+[2024-04-09 11:27:50] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6638603806495667, 'acc': 1.0, 'val_loss': 0.6728554368019104, 'val_acc': 1.0, 'auc': 0.96875, 'val_auc': 1.0} 
+[2024-04-09 11:27:50] [INFO] begin epoch: 1
+[2024-04-09 11:27:52] [INFO] IDCNN2 , epoch: 1 , dict:{'model_name': 'IDCNN2', 'epoch': 2, 'loss': 0.6746783256530762, 'acc': 1.0, 'val_loss': 0.6704854369163513, 'val_acc': 1.0, 'auc': 0.96875, 'val_auc': 1.0} 
+[2024-04-09 11:27:52] [INFO] begin epoch: 2
+[2024-04-09 11:27:54] [INFO] IDCNN2 , epoch: 2 , dict:{'model_name': 'IDCNN2', 'epoch': 3, 'loss': 0.6852568984031677, 'acc': 0.75, 'val_loss': 0.6681331992149353, 'val_acc': 1.0, 'auc': 0.65625, 'val_auc': 1.0} 
+[2024-04-09 11:27:54] [INFO] begin epoch: 3
+[2024-04-09 11:27:56] [INFO] IDCNN2 , epoch: 3 , dict:{'model_name': 'IDCNN2', 'epoch': 4, 'loss': 0.6738830804824829, 'acc': 0.75, 'val_loss': 0.6658008098602295, 'val_acc': 1.0, 'auc': 0.96875, 'val_auc': 1.0} 
+[2024-04-09 11:27:56] [INFO] begin epoch: 4
+[2024-04-09 11:27:58] [INFO] IDCNN2 , epoch: 4 , dict:{'model_name': 'IDCNN2', 'epoch': 5, 'loss': 0.6643550395965576, 'acc': 1.0, 'val_loss': 0.663494884967804, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:27:58] [INFO] begin epoch: 5
+[2024-04-09 11:28:00] [INFO] IDCNN2 , epoch: 5 , dict:{'model_name': 'IDCNN2', 'epoch': 6, 'loss': 0.6640057563781738, 'acc': 1.0, 'val_loss': 0.6611999273300171, 'val_acc': 1.0, 'auc': 0.96875, 'val_auc': 1.0} 
+[2024-04-09 11:28:00] [INFO] begin epoch: 6
+[2024-04-09 11:28:02] [INFO] IDCNN2 , epoch: 6 , dict:{'model_name': 'IDCNN2', 'epoch': 7, 'loss': 0.6469228267669678, 'acc': 1.0, 'val_loss': 0.6589235067367554, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:02] [INFO] begin epoch: 7
+[2024-04-09 11:28:03] [INFO] IDCNN2 , epoch: 7 , dict:{'model_name': 'IDCNN2', 'epoch': 8, 'loss': 0.6633786559104919, 'acc': 0.75, 'val_loss': 0.6566535830497742, 'val_acc': 1.0, 'auc': 0.9375, 'val_auc': 1.0} 
+[2024-04-09 11:28:04] [INFO] begin epoch: 8
+[2024-04-09 11:28:05] [INFO] IDCNN2 , epoch: 8 , dict:{'model_name': 'IDCNN2', 'epoch': 9, 'loss': 0.655850350856781, 'acc': 1.0, 'val_loss': 0.6544097661972046, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:05] [INFO] begin epoch: 9
+[2024-04-09 11:28:07] [INFO] IDCNN2 , epoch: 9 , dict:{'model_name': 'IDCNN2', 'epoch': 10, 'loss': 0.6548510789871216, 'acc': 1.0, 'val_loss': 0.6521750688552856, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:07] [INFO] begin epoch: 10
+[2024-04-09 11:28:09] [INFO] IDCNN2 , epoch: 10 , dict:{'model_name': 'IDCNN2', 'epoch': 11, 'loss': 0.657228946685791, 'acc': 1.0, 'val_loss': 0.649946391582489, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:09] [INFO] begin epoch: 11
+[2024-04-09 11:28:11] [INFO] IDCNN2 , epoch: 11 , dict:{'model_name': 'IDCNN2', 'epoch': 12, 'loss': 0.636467456817627, 'acc': 1.0, 'val_loss': 0.6477266550064087, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:11] [INFO] begin epoch: 12
+[2024-04-09 11:28:13] [INFO] IDCNN2 , epoch: 12 , dict:{'model_name': 'IDCNN2', 'epoch': 13, 'loss': 0.651326596736908, 'acc': 1.0, 'val_loss': 0.6455084085464478, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:13] [INFO] begin epoch: 13
+[2024-04-09 11:28:15] [INFO] IDCNN2 , epoch: 13 , dict:{'model_name': 'IDCNN2', 'epoch': 14, 'loss': 0.6469436287879944, 'acc': 1.0, 'val_loss': 0.643302857875824, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:15] [INFO] begin epoch: 14
+[2024-04-09 11:28:17] [INFO] IDCNN2 , epoch: 14 , dict:{'model_name': 'IDCNN2', 'epoch': 15, 'loss': 0.654411792755127, 'acc': 1.0, 'val_loss': 0.6410996913909912, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:17] [INFO] begin epoch: 15
+[2024-04-09 11:28:19] [INFO] IDCNN2 , epoch: 15 , dict:{'model_name': 'IDCNN2', 'epoch': 16, 'loss': 0.6411389112472534, 'acc': 1.0, 'val_loss': 0.6389077305793762, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:19] [INFO] begin epoch: 16
+[2024-04-09 11:28:21] [INFO] IDCNN2 , epoch: 16 , dict:{'model_name': 'IDCNN2', 'epoch': 17, 'loss': 0.6216793060302734, 'acc': 1.0, 'val_loss': 0.6367355585098267, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:21] [INFO] begin epoch: 17
+[2024-04-09 11:28:23] [INFO] IDCNN2 , epoch: 17 , dict:{'model_name': 'IDCNN2', 'epoch': 18, 'loss': 0.6445995569229126, 'acc': 1.0, 'val_loss': 0.634564220905304, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:23] [INFO] begin epoch: 18
+[2024-04-09 11:28:25] [INFO] IDCNN2 , epoch: 18 , dict:{'model_name': 'IDCNN2', 'epoch': 19, 'loss': 0.6501790285110474, 'acc': 1.0, 'val_loss': 0.6323944926261902, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:25] [INFO] begin epoch: 19
+[2024-04-09 11:28:27] [INFO] IDCNN2 , epoch: 19 , dict:{'model_name': 'IDCNN2', 'epoch': 20, 'loss': 0.6366022229194641, 'acc': 1.0, 'val_loss': 0.630225658416748, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:27] [INFO] begin epoch: 20
+[2024-04-09 11:28:29] [INFO] IDCNN2 , epoch: 20 , dict:{'model_name': 'IDCNN2', 'epoch': 21, 'loss': 0.6177949905395508, 'acc': 1.0, 'val_loss': 0.6280608773231506, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:29] [INFO] begin epoch: 21
+[2024-04-09 11:28:31] [INFO] IDCNN2 , epoch: 21 , dict:{'model_name': 'IDCNN2', 'epoch': 22, 'loss': 0.640529215335846, 'acc': 1.0, 'val_loss': 0.6259064674377441, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:31] [INFO] begin epoch: 22
+[2024-04-09 11:28:33] [INFO] IDCNN2 , epoch: 22 , dict:{'model_name': 'IDCNN2', 'epoch': 23, 'loss': 0.614905834197998, 'acc': 1.0, 'val_loss': 0.623762845993042, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:33] [INFO] begin epoch: 23
+[2024-04-09 11:28:35] [INFO] IDCNN2 , epoch: 23 , dict:{'model_name': 'IDCNN2', 'epoch': 24, 'loss': 0.6158649921417236, 'acc': 1.0, 'val_loss': 0.6216199994087219, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:35] [INFO] begin epoch: 24
+[2024-04-09 11:28:37] [INFO] IDCNN2 , epoch: 24 , dict:{'model_name': 'IDCNN2', 'epoch': 25, 'loss': 0.6330243349075317, 'acc': 1.0, 'val_loss': 0.619480550289154, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:37] [INFO] begin epoch: 25
+[2024-04-09 11:28:39] [INFO] IDCNN2 , epoch: 25 , dict:{'model_name': 'IDCNN2', 'epoch': 26, 'loss': 0.611939013004303, 'acc': 1.0, 'val_loss': 0.6173471808433533, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:39] [INFO] begin epoch: 26
+[2024-04-09 11:28:41] [INFO] IDCNN2 , epoch: 26 , dict:{'model_name': 'IDCNN2', 'epoch': 27, 'loss': 0.6194345355033875, 'acc': 1.0, 'val_loss': 0.6152233481407166, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:41] [INFO] begin epoch: 27
+[2024-04-09 11:28:43] [INFO] IDCNN2 , epoch: 27 , dict:{'model_name': 'IDCNN2', 'epoch': 28, 'loss': 0.6130163669586182, 'acc': 1.0, 'val_loss': 0.6131020784378052, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:43] [INFO] begin epoch: 28
+[2024-04-09 11:28:45] [INFO] IDCNN2 , epoch: 28 , dict:{'model_name': 'IDCNN2', 'epoch': 29, 'loss': 0.608350932598114, 'acc': 1.0, 'val_loss': 0.6109809875488281, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:28:45] [INFO] begin epoch: 29
+[2024-04-09 11:28:47] [INFO] IDCNN2 , epoch: 29 , dict:{'model_name': 'IDCNN2', 'epoch': 30, 'loss': 0.617645800113678, 'acc': 1.0, 'val_loss': 0.6088641285896301, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:49:30] [INFO] begin epoch: 0
+[2024-04-09 11:49:32] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.7052333950996399, 'acc': 0.5, 'val_loss': 0.6929707527160645, 'val_acc': 0.5, 'auc': 0.375, 'val_auc': 0.5} 
+[2024-04-09 11:51:23] [INFO] begin epoch: 0
+[2024-04-09 11:51:25] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6851749420166016, 'acc': 0.5, 'val_loss': 0.6826571822166443, 'val_acc': 1.0, 'auc': 0.71875, 'val_auc': 1.0} 
+[2024-04-09 11:51:25] [INFO] begin epoch: 1
+[2024-04-09 11:51:27] [INFO] IDCNN2 , epoch: 1 , dict:{'model_name': 'IDCNN2', 'epoch': 2, 'loss': 0.6608563661575317, 'acc': 1.0, 'val_loss': 0.680312991142273, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:51:27] [INFO] begin epoch: 2
+[2024-04-09 11:51:29] [INFO] IDCNN2 , epoch: 2 , dict:{'model_name': 'IDCNN2', 'epoch': 3, 'loss': 0.6676458120346069, 'acc': 1.0, 'val_loss': 0.6780054569244385, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:56:30] [INFO] begin epoch: 0
+[2024-04-09 11:56:32] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6647752523422241, 'acc': 1.0, 'val_loss': 0.6762788891792297, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 11:58:48] [INFO] begin epoch: 0
+[2024-04-09 11:58:50] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6837278604507446, 'acc': 0.75, 'val_loss': 0.6851376891136169, 'val_acc': 1.0, 'auc': 0.8125, 'val_auc': 0.96875} 
+[2024-04-09 12:01:15] [INFO] begin epoch: 0
+[2024-04-09 12:01:18] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.7286607027053833, 'acc': 0.0, 'val_loss': 0.7086765170097351, 'val_acc': 0.0, 'auc': 0.0, 'val_auc': 0.0} 
+[2024-04-09 14:17:21] [INFO] begin epoch: 0
+[2024-04-09 14:17:23] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6821480989456177, 'acc': 0.75, 'val_loss': 0.6844725608825684, 'val_acc': 1.0, 'auc': 0.75, 'val_auc': 1.0} 
+[2024-04-09 14:18:41] [INFO] begin epoch: 0
+[2024-04-09 14:18:43] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6915180683135986, 'acc': 0.5, 'val_loss': 0.6833563446998596, 'val_acc': 1.0, 'auc': 0.46875, 'val_auc': 1.0} 
+[2024-04-09 14:18:43] [DEBUG] Creating converter from 5 to 3
+[2024-04-09 14:18:43] [INFO] begin epoch: 1
+[2024-04-09 14:18:45] [INFO] IDCNN2 , epoch: 1 , dict:{'model_name': 'IDCNN2', 'epoch': 2, 'loss': 0.6998382210731506, 'acc': 0.25, 'val_loss': 0.6811556816101074, 'val_acc': 1.0, 'auc': 0.125, 'val_auc': 1.0} 
+[2024-04-09 14:18:45] [INFO] begin epoch: 2
+[2024-04-09 14:18:47] [INFO] IDCNN2 , epoch: 2 , dict:{'model_name': 'IDCNN2', 'epoch': 3, 'loss': 0.6792138814926147, 'acc': 1.0, 'val_loss': 0.678981602191925, 'val_acc': 1.0, 'auc': 1.0, 'val_auc': 1.0} 
+[2024-04-09 14:50:22] [INFO] begin epoch: 0
+[2024-04-09 14:50:24] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.6961325407028198, 'acc': 0.25, 'val_loss': 0.6941076517105103, 'val_acc': 0.25, 'auc': 0.46875, 'val_auc': 0.5} 
+[2024-04-09 14:50:24] [INFO] begin epoch: 1
+[2024-04-09 14:50:26] [INFO] IDCNN2 , epoch: 1 , dict:{'model_name': 'IDCNN2', 'epoch': 2, 'loss': 0.6951738595962524, 'acc': 0.5, 'val_loss': 0.6920359134674072, 'val_acc': 0.75, 'auc': 0.375, 'val_auc': 0.5} 
+[2024-04-09 14:50:26] [INFO] begin epoch: 2
+[2024-04-09 14:50:28] [INFO] IDCNN2 , epoch: 2 , dict:{'model_name': 'IDCNN2', 'epoch': 3, 'loss': 0.6968381404876709, 'acc': 0.5, 'val_loss': 0.6899995803833008, 'val_acc': 1.0, 'auc': 0.125, 'val_auc': 0.5} 
+[2024-04-09 19:05:57] [INFO] begin epoch: 0
+[2024-04-09 19:06:11] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.7020817399024963, 'acc': 0.4074074, 'val_loss': 0.6995882987976074, 'val_acc': 0.33333334, 'auc': 0.35939643, 'val_auc': 0.3580247} 
+[2024-04-09 19:06:11] [INFO] begin epoch: 1
+[2024-04-09 19:06:25] [INFO] IDCNN2 , epoch: 1 , dict:{'model_name': 'IDCNN2', 'epoch': 2, 'loss': 0.703201949596405, 'acc': 0.37037036, 'val_loss': 0.698820948600769, 'val_acc': 0.33333334, 'auc': 0.31344306, 'val_auc': 0.34567901} 
+[2024-04-09 19:06:25] [INFO] begin epoch: 2
+[2024-04-09 19:06:38] [INFO] IDCNN2 , epoch: 2 , dict:{'model_name': 'IDCNN2', 'epoch': 3, 'loss': 0.6960507035255432, 'acc': 0.5185185, 'val_loss': 0.6980630159378052, 'val_acc': 0.33333334, 'auc': 0.48765433, 'val_auc': 0.30864197} 
+[2024-04-09 20:51:25] [INFO] begin epoch: 0
+[2024-04-09 20:55:13] [INFO] IDCNN2 , epoch: 0 , dict:{'model_name': 'IDCNN2', 'epoch': 1, 'loss': 0.692276762404912, 'acc': 0.5070422, 'val_loss': 0.6839478992954005, 'val_acc': 0.6997579, 'auc': 0.5181209, 'val_auc': 0.70392627} 
+[2024-04-09 20:55:14] [INFO] begin epoch: 1

@@ -1,17 +1,18 @@
 from DataProcess.vocab import *
 from Public.path import path_data_dir, path_data2_dir, path_msra_dir, path_renmin_dir
 import numpy as np, pandas as pd
-import os, re
-
+import os, re, multiprocessing
+from tqdm import tqdm
 import codecs
 from nltk import word_tokenize
 from bert4keras.tokenizers import Tokenizer
-from Public.path import path_vocab
+
 from nltk.tokenize import WordPunctTokenizer
+from Public.path import tokenzier_path_vocab, max_len, tokenzier_path_vocab_clean
 
 
 class DataProcess(object):
-    def __init__(self, max_len=12800, model=None):
+    def __init__(self, model=None):
         """
         数据处理
         :param max_len: 句子最长的长度，默认为保留100
@@ -25,7 +26,7 @@ class DataProcess(object):
         self.max_len = max_len
         self.model = model
         self.tag_size = 2
-        self.vocab_path = path_vocab
+        self.tokenizer_path_vocab = tokenzier_path_vocab_clean
 
         # token_dict = {}
         # with codecs.open(self.dict_path, 'r', 'utf8') as reader:
@@ -35,9 +36,9 @@ class DataProcess(object):
         #
         # self.tokenizer = Tokenizer(token_dict)
 
-        self.tokenizer = Tokenizer(self.vocab_path, do_lower_case=True)
+        self.tokenizer = Tokenizer(self.tokenizer_path_vocab, do_lower_case=True)
 
-        self.base_dir = r'F:\mylearning\fengkong/ner_demo/data/data'
+        self.base_dir = r'F:\mylearning/data/data'
 
     def get_data(self, one_hot: bool = True) -> ([], [], [], []):
         """
@@ -48,8 +49,8 @@ class DataProcess(object):
 
         # 拼接地址
 
-        path_train = os.path.join(self.base_dir, "train_merge_30.csv")
-        path_test = os.path.join(self.base_dir, "train_merge_30.csv")
+        path_train = os.path.join(self.base_dir, "train_merge.csv")
+        path_test = os.path.join(self.base_dir, "test_merge.csv")
 
         # 、读取数据
         if self.model == 'bert':
@@ -57,13 +58,13 @@ class DataProcess(object):
             print('开始处理bert dev数据')
             test_data, test_label = self.__bert_text_to_index(path_test, data_type='dev')
         else:
-            # train_data, train_label = self.__tokenizer_text_to_indexs(path_train, data_type="dev")
-            # print("开始处理dev数据 ")
-            # test_data, test_label = self.__tokenizer_text_to_indexs(path_test, data_type="dev")
-
-            train_data, train_label = self.__word_punct_tokenizer_text_to_indexs(path_train)
+            train_data, train_label = self.__tokenizer_text_to_indexs_pall(path_train)
             print("开始处理dev数据 ")
-            test_data, test_label = self.__word_punct_tokenizer_text_to_indexs(path_test, data_type="dev")
+            test_data, test_label = self.__tokenizer_text_to_indexs_pall(path_test, data_type="dev")
+
+            # train_data, train_label = self.__word_punct_tokenizer_text_to_indexs(path_train)
+            # print("开始处理dev数据 ")
+            # test_data, test_label = self.__word_punct_tokenizer_text_to_indexs(path_test, data_type="dev")
 
         # 进行 one-hot处理
         if one_hot:
@@ -151,19 +152,23 @@ class DataProcess(object):
         print(f"{data_type} 数据长度：{len(df_content)}")
         datas = []
         labels = []
-        for index, item in df_content.iterrows():
+        for index, item in tqdm(df_content.iterrows()):
+            print(index)
             sms_data = item["f_sms_data"]
             label_one = item["d7"]
+            line_token_ids = []
+            # 去除邮箱
+            sms_data = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '',
+                              sms_data.lower())
 
-            ## 去除邮箱
-            # sms_data = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '',
-            #                   sms_data.lower())
+            for line in sms_data.split("\n")[:-1]:
+                line_token_ = self.tokenizer.tokenize(line)[1:-1]
+                line_token_id = self.tokenizer.tokens_to_ids(line_token_)
 
-            line_token_ids = self.tokenizer.tokens_to_ids(sms_data)[1:-1]
-            print(len(line_token_ids))
-
-            # print(f"标签 ：{sms_data} \n {self.tokenizer.tokenize(sms_data)}")
-            # print(f" ========== \n")
+                # 每一条短信后 加上结束标识
+                line_token_id += [2]
+                line_token_ids.extend(line_token_id)
+                # print(f" {len(line_token_)} ===  {len(line_token_id)}")
 
             if len(line_token_ids) >= self.max_len:  # 先进行截断
                 line_token_ids = line_token_ids[:self.max_len]
@@ -171,7 +176,7 @@ class DataProcess(object):
             # padding
             else:  # 填充到最大长度
                 pad_num = self.max_len - len(line_token_ids)
-                line_token_ids = line_token_ids + [self.w2i.get("[PAD]")] * pad_num
+                line_token_ids = line_token_ids + [1] * pad_num
 
             datas.append(line_token_ids)
 
@@ -179,6 +184,58 @@ class DataProcess(object):
 
         # np.array(xs[idx:])
         return np.array(datas), np.array(labels)
+
+    def __tokenizer_text_to_indexs_pall(self, file_path: str, data_type="train") -> ([], []):
+        df_content = pd.read_csv(file_path, sep="\t")
+        df_content = df_content[:500]
+        df_content.dropna(subset=["f_sms_data"], inplace=True)
+        print(f"{data_type} 数据长度：{len(df_content)}")
+        datas = []
+        labels = []
+
+        pool = multiprocessing.Pool(processes=8)
+
+        result_parallel = tqdm(pool.map(self.clean_tokenizer, df_content.iterrows()))
+
+        for item in result_parallel:
+            datas.append(item[0])
+            labels.append(item[1])
+
+        pool.close()
+        pool.join()
+
+        del result_parallel
+        del df_content
+
+        return np.array(datas), np.array(labels)
+
+    def clean_tokenizer(self, item):
+
+        item = item[1]
+        sms_data = item["f_sms_data"]
+        label_one = item["d7"]
+        line_token_ids = []
+        # 去除邮箱
+        sms_data = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '',
+                          sms_data.lower())
+
+        for line in sms_data.split("\n")[:-1]:
+            line_token_ = self.tokenizer.tokenize(line)[1:-1]
+            line_token_id = self.tokenizer.tokens_to_ids(line_token_)
+
+            # 每一条短信后 加上结束标识
+            line_token_id += [2]
+            line_token_ids.extend(line_token_id)
+            # print(f" {len(line_token_)} ===  {len(line_token_id)}")
+        if len(line_token_ids) >= self.max_len:  # 先进行截断
+            line_token_ids = line_token_ids[:self.max_len]
+
+        # padding
+        else:  # 填充到最大长度
+            pad_num = self.max_len - len(line_token_ids)
+            line_token_ids = line_token_ids + [1] * pad_num
+
+        return line_token_ids, label_one
 
     def __word_punct_tokenizer_text_to_indexs(self, file_path: str, data_type="train") -> ([], []):
         df_content = pd.read_csv(file_path, sep="\t")
@@ -211,6 +268,10 @@ class DataProcess(object):
 
                 for tk_line in tk_lines:
                     line_token_ids.append(self.w2i.get(tk_line, self.w2i.get("[UNK]")))
+
+                # 每一条短信后 加上结束标识
+                line_token_ids.append(self.w2i.get("[END]"))
+
             print(f"该用户的token 数 ：{len(line_token_ids)}")
             if len(line_token_ids) >= self.max_len:  # 先进行截断
                 line_token_ids = line_token_ids[:self.max_len]
@@ -262,7 +323,7 @@ class DataProcess(object):
 if __name__ == '__main__':
     import pandas as pd
 
-    dp = DataProcess( max_len=12800)
+    dp = DataProcess()
     x_train, y_train, x_test, y_test = dp.get_data(one_hot=False)
     # print(x_train[1].shape)
     # print(x_train[0].shape)
